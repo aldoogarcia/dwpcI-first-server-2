@@ -1,0 +1,31 @@
+{
+  
+  "type": "module",
+  "name": "first-server",
+  "version": "1.0.0",
+  "description": "mi primer servidor",
+  "engines": {
+    "node": "14.x",
+    "npm": "7.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./",
+    "test": "test-auto"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldoogarcia/dwpcI-first-server-2.git"
+  },
+  "keywords": [
+    "aldoogarcia"
+  ],
+  "author": "aldoogarcia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aldoogarcia/dwpcI-first-server-2/issues"
+  },
+  "homepage": "https://github.com/aldoogarcia/dwpcI-first-server-2#readme"
+  
+  
+}

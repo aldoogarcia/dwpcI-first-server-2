@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node ./",
+    "se": "node ./",
     "test": "test-auto"
   },
   "repository": {

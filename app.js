@@ -1,15 +1,10 @@
-import http from "http";
 import path from "path";
 import { promises as fs } from 'fs';
-
 global["__dirname"] = path.dirname(new URL(import.meta.url).pathname);
-
-const server = http.createServer(async (req, res) => {
+const requestHandler = async (req, res) => {
   // Desestructurando de "req"
   let { url, method } = req;
-
   console.log(`📣 CLIENT-REQUEST: ${req.url} ${req.method}`);
-
   // Enrutando peticiones
   switch (url) {
     case '/':
@@ -141,7 +136,7 @@ const server = http.createServer(async (req, res) => {
       // Verificando si es post
       if (method === "POST") {
         // Se crea una variable para almacenar los
-		    // Datos entrantes del cliente
+        // Datos entrantes del cliente
         let body = "";
         // Se registra un manejador de eventos
         // Para la recepción de datos
@@ -150,14 +145,14 @@ const server = http.createServer(async (req, res) => {
           if (body.length > 1e6) return req.socket.destroy();
         }));
         // Se registra una manejador de eventos
-		    // para el termino de recepción de datos
+        // para el termino de recepción de datos
         req.on("end", async () => {
           // Procesa el formulario
           // Mediante URLSearchParams se extraen
-			    // los campos del formulario
+          // los campos del formulario
           const params = new URLSearchParams(body);
           // Se construye un objeto a partir de los datos
-			    // en la variable params
+          // en la variable params
           const parsedParams = Object.fromEntries(params);
           // Almacenaremos en un archivo el mensaje
           await fs.writeFile('message.txt', parsedParams.message);
@@ -176,7 +171,7 @@ const server = http.createServer(async (req, res) => {
         res.end();
       }
       break;
-      // Continua con el defautl
+    // Continua con el defautl
     default:
       // Peticion raiz
       // Estableciendo cabeceras
@@ -201,8 +196,5 @@ const server = http.createServer(async (req, res) => {
       res.end();
       break;
   }
-}); 
-
-server.listen(3000, "0.0.0.0", () => {
-  console.log("👩‍🍳 Servidor escuchando en http://localhost:3000"); 
-});
+};
+export default { requestHandler };
